@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(rosprolog-java)
 
-find_package(catkin REQUIRED COMPONENTS rosprolog rosjava_build_tools rosjava_bootstrap json_prolog_msgs rosjava_messages rosprolog rosjava_build_tools rospy roscpp
+find_package(catkin REQUIRED COMPONENTS rosjava_build_tools rosjava_bootstrap json_prolog_msgs rosjava_messages rosjava_build_tools rospy roscpp
 )
 
 catkin_rosjava_setup(installDist publishMavenJavaPublicationToMavenRepository)
