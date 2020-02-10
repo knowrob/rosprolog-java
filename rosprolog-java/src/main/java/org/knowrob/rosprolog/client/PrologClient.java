@@ -71,19 +71,19 @@ public class PrologClient extends AbstractNodeMain {
 		}
 		
 		try {
-			query_client = connectedNode.newServiceClient("rosprolog/query", json_prolog_msgs.PrologQuery._TYPE);
+			query_client = connectedNode.newServiceClient("json_prolog/simple_query", json_prolog_msgs.PrologQuery._TYPE);
 		} catch (ServiceNotFoundException e) {
 			throw new RosRuntimeException(e);
 		}
 		
 		try {
-			next_solution_client = connectedNode.newServiceClient("rosprolog/next_solution", json_prolog_msgs.PrologNextSolution._TYPE);
+			next_solution_client = connectedNode.newServiceClient("json_prolog/next_solution", json_prolog_msgs.PrologNextSolution._TYPE);
 		} catch (ServiceNotFoundException e) {
 			throw new RosRuntimeException(e);
 		}
 		
 		try {
-			finish_client = connectedNode.newServiceClient("rosprolog/finish", json_prolog_msgs.PrologFinish._TYPE);
+			finish_client = connectedNode.newServiceClient("json_prolog/finish", json_prolog_msgs.PrologFinish._TYPE);
 		} catch (ServiceNotFoundException e) {
 			throw new RosRuntimeException(e);
 		} 
