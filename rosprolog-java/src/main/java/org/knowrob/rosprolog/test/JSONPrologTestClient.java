@@ -29,19 +29,30 @@
 
 package org.knowrob.rosprolog.test;
 
+import org.ros.internal.loader.CommandLineLoader;
+import org.ros.node.AbstractNodeMain;
+import org.ros.node.DefaultNodeMainExecutor;
+import org.ros.node.NodeConfiguration;
+import org.ros.node.NodeMainExecutor;
+
 import org.knowrob.rosprolog.PrologBindings;
 import org.knowrob.rosprolog.client.PrologClient;
 import org.knowrob.rosprolog.client.PrologQueryProxy;
-import org.knowrob.utils.ros.RosUtilities;
+
+import com.google.common.collect.Lists;
 
 public class JSONPrologTestClient {
+	public static void runRosjavaNode(AbstractNodeMain node, String[] args) {
+		CommandLineLoader loader = new CommandLineLoader(Lists.newArrayList(args));
+		NodeConfiguration nodeConfiguration = loader.build();
+		NodeMainExecutor nodeMainExecutor = DefaultNodeMainExecutor.newDefault();
+		nodeMainExecutor.execute(node, nodeConfiguration);
+	}
+	
 	public static void main(String args[]) {
 		PrologClient pl = new PrologClient();
-		RosUtilities.runRosjavaNode(pl, new String[]{"org.knowrob.rosprolog.Prolog"});
-		
+		JSONPrologTestClient.runRosjavaNode(pl, new String[]{"org.knowrob.rosprolog.Prolog"});
 		PrologQueryProxy bdgs = pl.query("member(A, [1, 2, 3, 4]), B = ['x', A], C = foo(bar, A, B)");
-		
-		
 		for(PrologBindings bdg : bdgs) {
 			System.out.println("Found solution: ");
 			System.out.println("A = " + bdg.getBdgs_().get("A") );

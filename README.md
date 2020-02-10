@@ -1,3 +1,3 @@
-rosprolog_java
+rosprolog-java
 ===
 
